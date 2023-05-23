@@ -1,13 +1,30 @@
 // Linked list factory 
 const linkedListFactory = () => {
 
-    let linkedList = {}; 
+    let linkedList = {
+        value: 'head',
+        nextNode: null
+    }; 
 
     // Build the following functions in your linked list class:
     
+    // 0) check to see if the linked list has length of zero 
+    const isListEmpty = () => {
+        return((Object.keys(linkedList).length === 1) ? false : true); 
+    }
+
     // 1) append(value) adds a new node containing value to the end of the list
     const append = (value) => {
-
+        if (isListEmpty()) {
+            linkedList.nextNode = value; 
+        } else {
+            // find the end of the linked list. 
+            while (linkedList.nextNode !== null) {
+                linkedList.nextNode = linkedList.nextNode.nextNode; 
+            } 
+            // replace the last pointer's value of null to the new node. 
+            linkedList.nextNode = value;
+        }
     }
     
     // 2) prepend(value) adds a new node containing value to the start of the list
@@ -81,5 +98,15 @@ const nodeFactory = (value = null, nextNode = null) => {
     return node;
 }
 
-console.log(nodeFactory(8, null)); 
+let linkedList = linkedListFactory(); 
+linkedList.append(nodeFactory(1))
+
+console.log(linkedList.linkedList); 
+
+linkedList.append(nodeFactory(2)); 
+
+console.log(linkedList.linkedList); 
+
+
+
 
