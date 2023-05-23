@@ -1,3 +1,5 @@
+const util = require('util')
+
 // Linked list factory 
 const linkedListFactory = () => {
 
@@ -10,7 +12,14 @@ const linkedListFactory = () => {
     
     // 0) check to see if the linked list has length of zero 
     const isListEmpty = () => {
-        return((Object.keys(linkedList).length === 1) ? false : true); 
+        return((linkedList.nextNode === null) ? true : false); 
+    }
+
+    const getEndOfLinkedList = (linkedList) => {
+        if (linkedList.nextNode === null) {
+            return linkedList;
+        }
+        return getEndOfLinkedList(linkedList.nextNode); 
     }
 
     // 1) append(value) adds a new node containing value to the end of the list
@@ -18,12 +27,7 @@ const linkedListFactory = () => {
         if (isListEmpty()) {
             linkedList.nextNode = value; 
         } else {
-            // find the end of the linked list. 
-            while (linkedList.nextNode !== null) {
-                linkedList.nextNode = linkedList.nextNode.nextNode; 
-            } 
-            // replace the last pointer's value of null to the new node. 
-            linkedList.nextNode = value;
+            getEndOfLinkedList(linkedList).nextNode = value; 
         }
     }
     
@@ -91,21 +95,21 @@ const linkedListFactory = () => {
 // Node factory 
 const nodeFactory = (value = null, nextNode = null) => {
     const node = { 
-        value,  
-        nextNode 
+        value: value,  
+        nextNode: nextNode
     };
 
     return node;
 }
 
 let linkedList = linkedListFactory(); 
+
 linkedList.append(nodeFactory(1))
+linkedList.append(nodeFactory(2));
+linkedList.append(nodeFactory(10)); 
+linkedList.append(nodeFactory(124817)); 
+console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
-console.log(linkedList.linkedList); 
-
-linkedList.append(nodeFactory(2)); 
-
-console.log(linkedList.linkedList); 
 
 
 
