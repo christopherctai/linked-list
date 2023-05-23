@@ -72,7 +72,14 @@ const linkedListFactory = () => {
 
 
 // Node factory 
-const nodeFactory = () => {
-    return {}
+const nodeFactory = (value = null, nextNode = null) => {
+    const node = { 
+        value,  
+        nextNode 
+    };
+
+    return node;
 }
+
+console.log(nodeFactory(8, null)); 
 
