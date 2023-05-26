@@ -16,10 +16,7 @@ const linkedListFactory = () => {
     }
 
     const getEndOfLinkedList = (linkedList) => {
-        if (linkedList.nextNode === null) {
-            return linkedList;
-        }
-        return getEndOfLinkedList(linkedList.nextNode); 
+        return (linkedList.nextNode === null) ? linkedList : getEndOfLinkedList(linkedList.nextNode); 
     }
 
     // 1) append(value) adds a new node containing value to the end of the list
