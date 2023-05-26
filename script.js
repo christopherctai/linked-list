@@ -23,6 +23,10 @@ const linkedListFactory = () => {
         return (linkedList.nextNode === null) ? 0 : total = 1 + getSizeOfLinkedList(linkedList.nextNode);
     }
 
+    const getElementAtIndex = (linkedList, index) => {
+        return (index === 0) ? linkedList.nextNode : getElementAtIndex(linkedList.nextNode, index - 1); 
+    }
+
     // 1) append(value) adds a new node containing value to the end of the list
     const append = (value) => {
         (isListEmpty()) ? linkedList.nextNode = value : getEndOfLinkedList(linkedList).nextNode = value; 
@@ -51,7 +55,7 @@ const linkedListFactory = () => {
 
     // 6) at(index) returns the node at the given index
     const at = (index) => {
-
+        return getElementAtIndex(linkedList, index); 
     }
 
     // 7) pop removes the last element from the list
@@ -110,7 +114,8 @@ linkedList.prepend(nodeFactory(30));
 linkedList.prepend(nodeFactory(300)); 
 linkedList.append(nodeFactory(100)); 
 linkedList.append(nodeFactory(4)); 
-console.log(linkedList.tail()); 
+console.log(linkedList.at(0)); 
+console.log(linkedList.at(4)); 
 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
