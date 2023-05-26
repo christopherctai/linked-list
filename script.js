@@ -15,6 +15,7 @@ const linkedListFactory = () => {
         return((linkedList.nextNode === null) ? true : false); 
     }
 
+    // base recursive functions 
     const getEndOfLinkedList = (linkedList) => {
         return (linkedList.nextNode === null) ? linkedList : getEndOfLinkedList(linkedList.nextNode); 
     }
@@ -23,8 +24,18 @@ const linkedListFactory = () => {
         return (linkedList.nextNode === null) ? 0 : total = 1 + getSizeOfLinkedList(linkedList.nextNode);
     }
 
-    const getElementAtIndex = (linkedList, index) => {
-        return (index === 0) ? linkedList.nextNode : getElementAtIndex(linkedList.nextNode, index - 1); 
+    const getNodeAtIndex = (linkedList, index) => {
+        return (index === 0) ? linkedList.nextNode : getNodeAtIndex(linkedList.nextNode, index - 1); 
+    }
+
+    const doesListContainValue = (linkedList, value) => {
+        return (linkedList.value === value) ? true : (linkedList.nextNode !== null) ? doesListContainValue(linkedList.nextNode, value) : false; 
+    } 
+
+    const findIndexForValue = (linkedList, value) => {
+        if (linkedList.value === value) {
+            return 0; 
+        }
     }
 
     // 1) append(value) adds a new node containing value to the end of the list
@@ -55,17 +66,17 @@ const linkedListFactory = () => {
 
     // 6) at(index) returns the node at the given index
     const at = (index) => {
-        return getElementAtIndex(linkedList, index); 
+        return getNodeAtIndex(linkedList, index); 
     }
 
     // 7) pop removes the last element from the list
     const pop = () => {
-        getElementAtIndex(linkedList, getSizeOfLinkedList(linkedList) - 2).nextNode = null; 
+        getNodeAtIndex(linkedList, getSizeOfLinkedList(linkedList) - 2).nextNode = null; 
     }
 
     // 8) contains(value) returns true if the passed in value is in the list and otherwise returns false.
     const contains = (value) => {
-
+        return doesListContainValue(linkedList, value); 
     }
 
     // 9) find(value) returns the index of the node containing value, or null if not found.
@@ -111,11 +122,8 @@ linkedList.append(nodeFactory(2));
 linkedList.append(nodeFactory(10)); 
 linkedList.append(nodeFactory(124817)); 
 linkedList.prepend(nodeFactory(30)); 
-linkedList.prepend(nodeFactory(300)); 
-linkedList.append(nodeFactory(100)); 
-linkedList.append(nodeFactory(4)); 
-linkedList.pop(); 
-linkedList.pop();
+
+console.log(linkedList.at(0));
 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
