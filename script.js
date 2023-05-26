@@ -33,11 +33,11 @@ const linkedListFactory = () => {
     } 
 
     const findIndexForValue = (linkedList, value) => {
-        if (linkedList.value === value) {
-            return 0; 
-        } else {
-            return total = 1 + findIndexForValue(linkedList.nextNode, value); 
-        }
+        return (linkedList.value === value) ? 0 : total = 1 + findIndexForValue(linkedList.nextNode, value); 
+    }
+
+    const convertLinkedListToString = (linkedList) => {
+        return (linkedList.nextNode === null) ? `(${linkedList.value}) -> null` : `(${linkedList.value}) -> ${convertLinkedListToString(linkedList.nextNode)}`;
     }
 
     // 1) append(value) adds a new node containing value to the end of the list
@@ -88,7 +88,7 @@ const linkedListFactory = () => {
 
     // 10) toString represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
     const toString = () => {
-
+        return convertLinkedListToString(linkedList); 
     }
 
     return {
@@ -117,17 +117,7 @@ const nodeFactory = (value = null, nextNode = null) => {
     return node;
 }
 
-let linkedList = linkedListFactory(); 
-
-linkedList.append(nodeFactory(1))
-linkedList.append(nodeFactory(2));
-linkedList.append(nodeFactory(10)); 
-linkedList.append(nodeFactory(124817)); 
-linkedList.prepend(nodeFactory(30)); 
-
-console.log(linkedList.at(4));
-console.log(linkedList.find(124817)); 
-
+let linkedList = linkedListFactory();
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
 
