@@ -46,7 +46,7 @@ const linkedListFactory = () => {
 
     // 5) tail returns the last node in the list
     const tail = () => {
-
+        return getEndOfLinkedList(linkedList); 
     }
 
     // 6) at(index) returns the node at the given index
@@ -110,7 +110,7 @@ linkedList.prepend(nodeFactory(30));
 linkedList.prepend(nodeFactory(300)); 
 linkedList.append(nodeFactory(100)); 
 linkedList.append(nodeFactory(4)); 
-console.log(linkedList.head()); 
+console.log(linkedList.tail()); 
 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
