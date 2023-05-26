@@ -36,12 +36,12 @@ const linkedListFactory = () => {
 
     // 3) size returns the total number of nodes in the list
     const size = () => {
-        console.log(getSizeOfLinkedList(linkedList));
+        return getSizeOfLinkedList(linkedList)
     }
     
     // 4) head returns the first node in the list
     const head = () => {
-        
+        return linkedList.nextNode; 
     }
 
     // 5) tail returns the last node in the list
@@ -109,9 +109,9 @@ linkedList.append(nodeFactory(124817));
 linkedList.prepend(nodeFactory(30)); 
 linkedList.prepend(nodeFactory(300)); 
 linkedList.append(nodeFactory(100)); 
-linkedList.size(); 
 linkedList.append(nodeFactory(4)); 
-linkedList.size();
+console.log(linkedList.head()); 
+
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
 
