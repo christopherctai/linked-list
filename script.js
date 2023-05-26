@@ -35,6 +35,8 @@ const linkedListFactory = () => {
     const findIndexForValue = (linkedList, value) => {
         if (linkedList.value === value) {
             return 0; 
+        } else {
+            return total = 1 + findIndexForValue(linkedList.nextNode, value); 
         }
     }
 
@@ -81,7 +83,7 @@ const linkedListFactory = () => {
 
     // 9) find(value) returns the index of the node containing value, or null if not found.
     const find = (value) => {
-
+        return findIndexForValue(linkedList.nextNode, value); 
     }
 
     // 10) toString represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -123,7 +125,8 @@ linkedList.append(nodeFactory(10));
 linkedList.append(nodeFactory(124817)); 
 linkedList.prepend(nodeFactory(30)); 
 
-console.log(linkedList.at(0));
+console.log(linkedList.at(4));
+console.log(linkedList.find(124817)); 
 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
