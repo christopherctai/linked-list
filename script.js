@@ -60,7 +60,7 @@ const linkedListFactory = () => {
 
     // 7) pop removes the last element from the list
     const pop = () => {
-
+        getElementAtIndex(linkedList, getSizeOfLinkedList(linkedList) - 2).nextNode = null; 
     }
 
     // 8) contains(value) returns true if the passed in value is in the list and otherwise returns false.
@@ -114,8 +114,8 @@ linkedList.prepend(nodeFactory(30));
 linkedList.prepend(nodeFactory(300)); 
 linkedList.append(nodeFactory(100)); 
 linkedList.append(nodeFactory(4)); 
-console.log(linkedList.at(0)); 
-console.log(linkedList.at(4)); 
+linkedList.pop(); 
+linkedList.pop();
 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
