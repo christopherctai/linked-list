@@ -21,16 +21,13 @@ const linkedListFactory = () => {
 
     // 1) append(value) adds a new node containing value to the end of the list
     const append = (value) => {
-        if (isListEmpty()) {
-            linkedList.nextNode = value; 
-        } else {
-            getEndOfLinkedList(linkedList).nextNode = value; 
-        }
+        (isListEmpty()) ? linkedList.nextNode = value : getEndOfLinkedList(linkedList).nextNode = value; 
     }
     
     // 2) prepend(value) adds a new node containing value to the start of the list
     const prepend = (value) => {
-
+        value.nextNode = linkedList.nextNode
+        linkedList.nextNode = value; 
     }
 
     // 3) size returns the total number of nodes in the list
@@ -105,6 +102,9 @@ linkedList.append(nodeFactory(1))
 linkedList.append(nodeFactory(2));
 linkedList.append(nodeFactory(10)); 
 linkedList.append(nodeFactory(124817)); 
+linkedList.prepend(nodeFactory(30)); 
+linkedList.prepend(nodeFactory(300)); 
+linkedList.append(nodeFactory(100)); 
 console.log(util.inspect(linkedList.linkedList, false, null, true)); 
 
 
